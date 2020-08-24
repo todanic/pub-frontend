@@ -4,11 +4,16 @@ import VueRouter, { RouteConfig } from 'vue-router';
 Vue.use(VueRouter);
 
 const routes: RouteConfig[] = [
+  // {
+  //   path: '/',
+  //   alias: '/tutorials',
+  //   name: 'tutorials',
+  //   component: () => import('../components/TutorialsList.vue'),
+  // },
   {
     path: '/',
-    alias: '/tutorials',
-    name: 'tutorials',
-    component: () => import('../components/TutorialsList.vue'),
+    name: 'home-view',
+    component: () => import('../views/HomeView.vue'),
   },
   {
     path: '/tutorials/:id',
@@ -19,6 +24,16 @@ const routes: RouteConfig[] = [
     path: '/add',
     name: 'add',
     component: () => import('../components/AddTutorial.vue'),
+  },
+  {
+    path: '/login',
+    name: 'login',
+    component: () => import('../components/LoginComponent.vue'),
+  },
+  {
+    path: '/register',
+    name: 'register',
+    component: () => import('../components/RegisterComponent.vue'),
   },
 ];
 

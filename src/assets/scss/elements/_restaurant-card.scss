@@ -1,0 +1,98 @@
+.restaurant-card {
+	height: 100%;
+	font-family: $primary-font;
+	font-size: 1.6rem;
+	box-shadow: 0 4px 25px 0 rgba(0,0,0,.1);
+	-webkit-transition: all .3s ease-in-out;
+	overflow: hidden;
+	margin-right: 20px;
+}
+.restaurant-card__row {
+	height: 100%;
+}
+.restaurant-card-row__title {
+	position: absolute;
+	left: 0;
+	height: 45px;
+	background-color: rgba(16,22,58, 0.8);
+	p {
+		position: relative;
+		z-index: 1;
+		color: #fff;
+		opacity: 1;
+		font-weight: bold;
+		font-size: 1.8rem;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		margin-top: 5px;
+	}
+}
+.restaurant-card__row-image {
+	font-size: 20px;
+	.v-image__image{
+		transition: all 0.3s ease-in-out;
+	}
+	&:hover {
+		.v-image__image {
+			transform: scale(1.1);
+		}
+	}
+}
+.restaurant-card__favorite {
+	position: absolute;
+	right: 0;
+	cursor: pointer;
+	height: 45px;
+	background-color: rgba(16,22,58, 0.8);
+}
+.restaurant-card__favorite-icon.theme--light.v-icon {
+	color: #fff;
+	font-weight: bold;
+}
+.restaurant-card__favorite-icon--active.theme--light.v-icon {
+	opacity: 1;
+	color: #9d1818;
+	font-weight: bold;
+}
+.restaurant-card__offers{
+	margin-top: -80px;
+
+	.v-slide-group__next, .v-slide-group__prev {
+		min-width: 32px;
+
+		i {
+			color: #fff;
+		}
+	}
+	.v-image {
+		margin: 0 auto;
+	}
+}
+.restaurant-card__subtitle.v-card__subtitle {
+	color: $primary-text-color;
+	font-weight: bold;
+	font-size: 1.4rem;
+	line-height: 1.7rem;
+}
+.restaurant-card__subtitle-icon {
+	color: $primary-text-color;
+}	
+.restaurant-card__description.v-card__text{
+	color: $primary-text-color;
+	font-size: 1.4rem;
+	line-height: 1.6rem;
+	font-weight: 500;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 3;
+	-webkit-box-orient: vertical;
+}
+.restaurant-card__actions {
+	p {
+		font-size: 1.4rem;
+		font-weight: bold;
+	}
+}
+
