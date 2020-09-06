@@ -64,8 +64,25 @@ export default {
 
 			AuthDataService.register(data)
 				.then(response => {
-          this.fields.id = response.data.id;
-          console.log(response.data);
+				this.fields.id = response.data.id;
+				this.registerRestaurant()
+				console.log(response.data);
+        })
+        .catch(e => {
+          console.log(e);
+			  });
+			
+		
+		},
+		registerRestaurant() {
+			var data = {
+				restaurantName: this.fields.restaurantName,
+				userId: this.fields.id
+			};
+console.log(data)
+			AuthDataService.registerRestaurant(data)
+				.then(response => {
+				console.log(response.data);
         })
         .catch(e => {
           console.log(e);

@@ -14,6 +14,9 @@
 					<li class="header-container__item">
 							<router-link to="/register">Register</router-link>
 					</li>
+						<li class="header-container__item">
+							<router-link to="/profile">Profile</router-link>
+					</li>
 				</ul>
 			</v-col>
 		</v-row>

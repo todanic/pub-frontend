@@ -34,7 +34,7 @@ export default {
 		return {
 			fields: {
 				email: '',
-				name: '',
+				password: '',
 			}
 		}
 	},

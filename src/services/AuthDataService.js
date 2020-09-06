@@ -9,12 +9,24 @@ class AuthDataService {
     return http.post("/register", data);
   }
 
+  registerRestaurant(data) {
+    return http.post("/register-restaurant", data);
+  }
+
+  getRestaurant(userId) {
+    return http.get(`/profile-restaurant/${id}`);
+  }
+
   update(id, data) {
-    return http.put(`/tutorials/${id}`, data);
+    return http.put(`/update/${id}`, data);
   }
 
   delete(id) {
-    return http.delete(`/tutorials/${id}`);
+    return http.delete(`/user/${id}`);
+  }
+
+  profile(id) {
+    return http.get(`/profile/${id}`);
   }
 }
 

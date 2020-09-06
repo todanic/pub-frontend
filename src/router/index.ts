@@ -35,6 +35,11 @@ const routes: RouteConfig[] = [
     name: 'register',
     component: () => import('../components/RegisterComponent.vue'),
   },
+  {
+    path: '/profile/:id',
+    name: 'profile-view',
+    component: () => import('../views/ProfileView.vue'),
+  },
 ];
 
 const router = new VueRouter({
