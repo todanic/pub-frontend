@@ -7,15 +7,20 @@
 				</router-link>
 			</v-col>
 			<v-col lg="8" md="8" sm="8" cols="8">
-				<ul class="header-container__menu pl-0 pt-4 justify-right pr-5">
+				<ul class="header-container__menu pl-0 pt-4 justify-right pr-5" v-if="!this.$store.state.loggedIn">
 					<li class="header-container__item">
 							<router-link to="/login">Login</router-link>
 					</li>
 					<li class="header-container__item">
 							<router-link to="/register">Register</router-link>
 					</li>
+				</ul>
+				<ul class="header-container__menu pl-0 pt-4 justify-right pr-5" v-else>
+					<li class="header-container__item">
+							<span @click="logout">Log out</span>
+					</li>
 						<li class="header-container__item">
-							<router-link to="/profile">Profile</router-link>
+							<router-link :to="{path: '/profile/' + this.userId}">Profile</router-link>
 					</li>
 				</ul>
 			</v-col>
@@ -25,6 +30,18 @@
 
 <script>
 export default {
-	name: 'header-component'
+	name: 'header-component',
+	data() {
+		return {
+			userId: JSON.parse(localStorage.getItem('user')),
+		}
+	},
+	methods: {
+		logout() {
+			localStorage.removeItem("user"); 
+			this.$store.dispatch('logout');
+			this.$router.push('/')
+		}
+	}
 }
 </script>

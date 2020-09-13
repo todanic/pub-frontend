@@ -11,7 +11,7 @@
 		list-style: none;
 		padding: 0 14px;
 
-		a {
+		a, span {
 			color: #fff;
 			font-size: 1.5rem;
 			text-transform: uppercase;
@@ -19,6 +19,7 @@
 			transition: all .5s ease;
 			text-decoration: none;
 			letter-spacing: 1px;
+			cursor: pointer;
 
 			&:hover {
 				color: $primary-site-color;

@@ -5,11 +5,12 @@ import router from './router';
 import store from './store';
 import Vuetify from 'vuetify';
 import './assets/scss/_all.scss';
-import '@fortawesome/fontawesome-free/css/all.css';
-import '@fortawesome/fontawesome-free/js/all.js';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import VeeValidate from 'vee-validate';
 
 Vue.config.productionTip = false;
-Vue.use(Vuetify);
+Vue.use(Vuetify, VeeValidate);
+
 
 new Vue({
   vuetify: new Vuetify(),

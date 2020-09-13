@@ -1,7 +1,8 @@
 <template>
 	<v-container class="profile-container">
-		<h1>Profile</h1>
-		<v-text-field
+		<v-col cols="12" class="profile-container__user-col">
+			<h1>User info</h1>
+			<v-text-field
 			type="text" 
 			class="profile-container__input"
 			v-model="user.email"
@@ -14,17 +15,37 @@
 			placeholder="Name">
 		</v-text-field>
 		<v-text-field
-			type="text" 
-			class="profile-container__input"
-			v-model="user.restaurantName"
-			placeholder="Restaurant name">
-		</v-text-field>
-		<v-text-field
 			type="password" 
 			class="profile-container__input"
 			v-model="user.password"
 			placeholder="Password">
 		</v-text-field>
+		</v-col>
+		<v-col cols="12" class="profile-container__restaurant-col">
+			<h1>Restaurant info</h1>
+			<v-text-field
+			type="text" 
+			class="profile-container__input"
+			v-model="user.restaurantName"
+			placeholder="Restaurant name">
+		</v-text-field>
+			<v-text-field
+			type="text" 
+			class="profile-container__input"
+			placeholder="Restaurant phone">
+		</v-text-field>
+			<v-text-field
+			type="text" 
+			class="profile-container__input"
+			placeholder="Restaurant address">
+		</v-text-field>
+			<v-text-field
+			type="text" 
+			class="profile-container__input"
+			placeholder="Restaurant description">
+		</v-text-field>
+		</v-col>
+		
 		<v-btn min-width="150px" type="submit" @click="save">
 			Save
 		</v-btn>
@@ -40,23 +61,23 @@ export default {
 	name: 'ProfileView',
 	data() {
 		return {
-			user: []
+			user: [],
 		}
 	},
 	methods: {
 		getUser() {
-      AuthDataService.profile(33)
+      AuthDataService.profile(this.$route.params.id)
         .then(response => {
           console.log(response.data);
 					this.user = response.data
-					this.getRestaurant()
+					this.getRestaurant(this.$route.params.id)
         })
         .catch(e => {
           console.log(e);
         });
 		},
-		getRestaurant() {
-			  AuthDataService.getRestaurant(this.user.id)
+		getRestaurant(userId) {
+			  AuthDataService.getRestaurant(userId)
         .then(response => {
           console.log(response.data);
 					this.user = response.data
@@ -67,7 +88,7 @@ export default {
         });
 		},
 		save() {
-			AuthDataService.update(this.user.id, this.user)
+			AuthDataService.update(this.$route.params.id, this.user)
         .then(response => {
           console.log(response.data);
           this.message = 'Your profile was updated successfully!';
@@ -77,7 +98,7 @@ export default {
         });
 		},
 		deleteUser() {
-      AuthDataService.delete(this.user.id)
+      AuthDataService.delete(this.$route.params.id)
         .then(response => {
           console.log(response.data);
           this.$router.push({ name: "user" });
@@ -88,7 +109,7 @@ export default {
     }
 	},
 	mounted() {
-    this.getUser();
+		this.getUser();
   }
 }
 </script>

@@ -14,7 +14,7 @@ class AuthDataService {
   }
 
   getRestaurant(userId) {
-    return http.get(`/profile-restaurant/${id}`);
+    return http.get(`/profile-restaurant/${userId}`);
   }
 
   update(id, data) {
