@@ -14,6 +14,8 @@
 <script>
 import SplashComponent from  '../components/SplashComponent.vue';
 import RestaurantCardComponent from  '../components/RestaurantCardComponent.vue';
+import AuthDataService from "../services/AuthDataService";
+import Restaurant from '../models/restaurant';
 
 export default {
 	name: 'home-view',
@@ -23,51 +25,23 @@ export default {
 	},
 	data() {
 		return {
-		shops: [
-			{
-				image: 'https://images.unsplash.com/photo-1499028344343-cd173ffc68a9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80',
-				shop_name: 'Shop 1',
-				shop_address: 'adresa random',
-				shop_description: 'ASUDHASIUDGHIADasd asd asd as asd asd as as as asdasdas asd asd as das ddasd asGIASGDIAU',
-				shop_rating: 5,
-			},
-				{
-				image: 'https://images.unsplash.com/photo-1499028344343-cd173ffc68a9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80',
-				shop_name: 'Shop 2',
-				shop_address: 'adresa random',
-				shop_description: 'ASUDHASIUDGHIADasd asd asd as asd asd as as as asdasdas asd asd as das ddasd asGIASGDIAU',
-				shop_rating: 5,
-			},
-				{
-				image: 'https://images.unsplash.com/photo-1499028344343-cd173ffc68a9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80',
-				shop_name: 'Shop 3',
-				shop_address: 'adresa random',
-				shop_description: 'ASUDHASIUDGHIADasd asd asd as asd asd as as as asdasdas asd asd as das ddasd asGIASGDIAU',
-				shop_rating: 5,
-			},
-				{
-				image: 'https://images.unsplash.com/photo-1499028344343-cd173ffc68a9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80',
-				shop_name: 'Shop 3',
-				shop_address: 'adresa random',
-				shop_description: 'ASUDHASIUDGHIADasd asd asd as asd asd as as as asdasdas asd asd as das ddasd asGIASGDIAU',
-				shop_rating: 5,
-			},
-				{
-				image: 'https://images.unsplash.com/photo-1499028344343-cd173ffc68a9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80',
-				shop_name: 'Shop 3',
-				shop_address: 'adresa random',
-				shop_description: 'ASUDHASIUDGHIADasd asd asd as asd asd as as as asdasdas asd asd as das ddasd asGIASGDIAU',
-				shop_rating: 5,
-			},
-				{
-				image: 'https://images.unsplash.com/photo-1499028344343-cd173ffc68a9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80',
-				shop_name: 'Shop 3',
-				shop_address: 'adresa random',
-				shop_description: 'ASUDHASIUDGHIADasd asd asd as asd asd as as as asdasdas asd asd as das ddasd asGIASGDIAU',
-				shop_rating: 5,
-			},
-			]
+		restaurant: new Restaurant('', '', '', '', '', ''),
+		shops: []
 		}
+	},
+	methods: {
+		getRestaurants() {
+			AuthDataService.getRestaurants()
+			.then(response => {
+				this.shops = response.data;
+			})
+			.catch(e => {
+				console.log(e)
+			})
+		}
+	},
+	mounted() {
+		this.getRestaurants();
 	}
 }
 

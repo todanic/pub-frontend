@@ -17,8 +17,12 @@ class AuthDataService {
     return http.get(`/profile-restaurant/${userId}`);
   }
 
-  update(id, data) {
-    return http.put(`/update/${id}`, data);
+  update(id, userData) {
+    return http.put(`/update/${id}`, userData);
+  }
+
+  updateRestaurant(data) {
+    return http.put("/update-restaurant/", data);
   }
 
   delete(id) {
@@ -27,6 +31,10 @@ class AuthDataService {
 
   profile(id) {
     return http.get(`/profile/${id}`);
+  }
+
+  getRestaurants() {
+    return http.get("/restaurants")
   }
 }
 

@@ -32,16 +32,19 @@
 			<v-text-field
 			type="text" 
 			class="profile-container__input"
+			v-model="restaurant.phone"
 			placeholder="Restaurant phone">
 		</v-text-field>
 			<v-text-field
 			type="text" 
 			class="profile-container__input"
+			v-model="restaurant.address"
 			placeholder="Restaurant address">
 		</v-text-field>
 			<v-text-field
 			type="text" 
 			class="profile-container__input"
+			v-model="restaurant.description"
 			placeholder="Restaurant description">
 		</v-text-field>
 		</v-col>
@@ -56,12 +59,15 @@
 </template>
 <script>
 import AuthDataService from "../services/AuthDataService";
+import User from '../models/user';
+import Restaurant from '../models/restaurant';
 
 export default {
 	name: 'ProfileView',
 	data() {
 		return {
-			user: [],
+			user: new User('', '', '', '', ''),
+			restaurant: new Restaurant('', '', '', '', '', ''),
 		}
 	},
 	methods: {
@@ -79,9 +85,7 @@ export default {
 		getRestaurant(userId) {
 			  AuthDataService.getRestaurant(userId)
         .then(response => {
-          console.log(response.data);
-					this.user = response.data
-					this.getRestaurant()
+					this.restaurant = response.data;
         })
         .catch(e => {
           console.log(e);
@@ -90,7 +94,19 @@ export default {
 		save() {
 			AuthDataService.update(this.$route.params.id, this.user)
         .then(response => {
-          console.log(response.data);
+					console.log(response.data);
+					this.saveRestaurant();
+        })
+        .catch(e => {
+          console.log(e);
+        });
+		},
+		saveRestaurant() {
+			this.restaurant.restaurantName = this.user.restaurantName;
+
+				AuthDataService.updateRestaurant(this.restaurant)
+        .then(response => {
+					console.log(response.data);
           this.message = 'Your profile was updated successfully!';
         })
         .catch(e => {
@@ -101,7 +117,7 @@ export default {
       AuthDataService.delete(this.$route.params.id)
         .then(response => {
           console.log(response.data);
-          this.$router.push({ name: "user" });
+          this.$router.push('/');
         })
         .catch(e => {
           console.log(e);

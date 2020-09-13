@@ -12,19 +12,19 @@
 			<v-img class="restaurant-card__row-image" height="150px" width="80px" :src="shop.image"></v-img>
 			<v-col lg="12" md="12" sm="12" cols="12" class="pt-2 pb-2 text-center restaurant-card-row__title">
 				<p>
-					{{ shop.shop_name }}
+					{{ shop.restaurantName }}
 				</p>
 			</v-col>
 			<!-- Shop address -->
 			<v-col cols="12" class="pa-0 ma-0 pt-4 pr-1 pl-3 pr-3 pb-0">	
 				<v-card-subtitle class="pa-0 pt-1 ma-0 restaurant-card__subtitle">
-					<i class="fas fa-map-marker-alt restaurant-card__subtitle-icon"></i>&nbsp;{{ shop.shop_address }}
+					<i class="fas fa-map-marker-alt restaurant-card__subtitle-icon"></i>&nbsp;{{ shop.address }}
 				</v-card-subtitle>
 			</v-col>
 		<!-- Shop description -->
 			<v-col align="start" cols="12" class="pl-3 pr-3 text-left pt-1 pb-0">
 				<v-card-text class="pa-0 ma-0 restaurant-card__description">
-					{{ shop.shop_description }}
+					{{ shop.description }}
 				</v-card-text>
 			</v-col>
 		</v-row>
