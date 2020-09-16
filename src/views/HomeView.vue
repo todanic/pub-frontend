@@ -1,13 +1,37 @@
 <template>
 	<div>
 		<splash-component></splash-component>
-		<v-container class="pt-5">
+		<v-container class="pt-5" fluid>
 				<v-slide-group :center-active="true" class="home-view-shop-cards-slider-group" show-arrows="">
 					<v-slide-item class="home-view-shop-cards-slider-group-item" v-for="(shop, index, key) in shops" :key="key">
 						<restaurant-card-component :shop="shop"></restaurant-card-component>
 					</v-slide-item>
 				</v-slide-group>
 		</v-container>
+		 <v-container fluid class="home-join-container pa-0">
+    <div class="home-join-container__wrap">
+      <div class="home-join-container__img">
+        <img src="../assets/images/homepage-bg.jpg" alt="home-join">
+      </div>  
+      <div class="home-join-container__shadow-wrap"></div>
+      <v-container class="home-join-container__content-wrap">
+        <v-row class="home-join-container__row justify-center align-center">
+          <v-col lg="6" md="6" sm="12" cols="12">
+            <div class="home-join-container__content">
+              <h2>own a restaurant?</h2>
+              <p>
+              Looking to fill those empty seats, especially during those times when you're not as busy? Yummee is a
+              website for your restaurant.
+              </p>
+              <v-btn text color="#fff" class="home-join-container__btn mt-6 pa-2" href="/register">
+								Join us
+              </v-btn>
+            </div>
+          </v-col>
+        </v-row>
+      </v-container>
+    </div>
+  </v-container>
 	</div>
 </template>
 

@@ -1,6 +1,6 @@
 <template>
 	<v-card 
-		class="restaurant-card ml-1 mr-6 mb-4 rounded-lg" 
+		class="restaurant-card ml-1 mt-2 mr-6 mb-4 rounded-lg" 
 		elevation="50"
 		@click="opened" 
 		width="350px"
@@ -9,7 +9,7 @@
 		:ripple="false"> 
 		<!-- Shop name and image -->
 		<v-row class="pa-3 pb-0 pt-0 restaurant-card__row"> 
-			<v-img class="restaurant-card__row-image" height="150px" width="80px" :src="shop.image"></v-img>
+			<v-img class="restaurant-card__row-image" height="180px" width="80px" src="../assets/images/noimage.png"></v-img>
 			<v-col lg="12" md="12" sm="12" cols="12" class="pt-2 pb-2 text-center restaurant-card-row__title">
 				<p>
 					{{ shop.restaurantName }}
@@ -48,6 +48,11 @@ export default {
 		opened: function (shop) {
 			this.$emit('opened', shop)
 		},
+	},
+	mounted() {
+		if(!this.shop.image) {
+			this.shop.image = "../assets/images/noimage.png";
+		}
 	}
 }
 </script>

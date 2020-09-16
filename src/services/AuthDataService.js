@@ -34,7 +34,11 @@ class AuthDataService {
   }
 
   getRestaurants() {
-    return http.get("/restaurants")
+    return http.get("/restaurants");
+  }
+
+  contact(data) {
+    return http.post("/contact", data);
   }
 }
 

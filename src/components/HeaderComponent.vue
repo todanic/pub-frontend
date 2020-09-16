@@ -9,18 +9,33 @@
 			<v-col lg="8" md="8" sm="8" cols="8">
 				<ul class="header-container__menu pl-0 pt-4 justify-right pr-5" v-if="!this.$store.state.loggedIn">
 					<li class="header-container__item">
-							<router-link to="/login">Login</router-link>
+						<router-link to="/about">About us</router-link>
+					</li>
+					<li class="header-container__item">
+							<router-link to="/contact">Contact us</router-link>
 					</li>
 					<li class="header-container__item">
 							<router-link to="/register">Register</router-link>
 					</li>
+					<li class="header-container__item">
+						<router-link to="/login">Login</router-link>
+					</li>
 				</ul>
 				<ul class="header-container__menu pl-0 pt-4 justify-right pr-5" v-else>
 					<li class="header-container__item">
-							<span @click="logout">Log out</span>
+						<router-link to="/about">About us</router-link>
 					</li>
-						<li class="header-container__item">
-							<router-link :to="{path: '/profile/' + this.userId}">Profile</router-link>
+					<li class="header-container__item">
+							<router-link to="/contact">Contact us</router-link>
+					</li>
+					<li class="header-container__item">
+						<router-link :to="{path: '/profile/' + this.$store.state.loggedIn}">Profile</router-link>
+					</li>
+					<li class="header-container__item">
+						<router-link :to="{path: '/restaurant/' + this.$store.state.loggedIn}">Resturant profile</router-link>
+					</li>
+					<li class="header-container__item">
+							<span @click="logout">Log out</span>
 					</li>
 				</ul>
 			</v-col>
@@ -33,12 +48,11 @@ export default {
 	name: 'header-component',
 	data() {
 		return {
-			userId: JSON.parse(localStorage.getItem('user')),
+		
 		}
 	},
 	methods: {
 		logout() {
-			localStorage.removeItem("user"); 
 			this.$store.dispatch('logout');
 			this.$router.push('/')
 		}

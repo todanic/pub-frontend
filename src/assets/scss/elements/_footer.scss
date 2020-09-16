@@ -1,0 +1,109 @@
+.footer-text-field.v-text-field.v-text-field--enclosed:not(.v-text-field--rounded) > .v-input__control > .v-input__slot,
+ .v-text-field.v-text-field--enclosed .v-text-field__details {
+  padding-right: 0;
+}
+
+.v-application--is-ltr .footer-text-field.v-text-field .v-input__append-inner {
+  margin-top: 0;
+  height: 55px;
+}
+
+.footer-btn.v-btn:not(.v-btn--round).v-size--default {
+  height: 55px;
+  border-radius: 0 !important;
+
+  &:hover {
+		box-shadow: 0 6px 22px -8px $primary-site-color;
+  }
+}
+
+.footer-btn.v-btn:not(.v-btn--text):not(.v-btn--outlined):hover:before {
+  opacity: 0;
+}
+
+.v-footer.footer-component {
+  line-height: 1.8;
+  font-size: 1.6rem;
+  position: relative;
+  font-family: 'Dosis' sans-serif;
+	font-weight: 500;
+	
+	.footer-btn-hold  {
+		flex-direction: column;
+	}
+
+	.footer-btn {
+		width: 20%;
+		height: 40px !important;
+	}
+
+  .footer-box {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+
+    a img{
+      margin-bottom: 10px;
+    }
+  }
+
+  ul {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 15px;
+
+    a {
+      color: #fff;
+      text-decoration: none;
+      transition: 0.4s;
+
+      &:hover {
+        color: $primary-site-color;
+      }
+    }
+  }
+
+  .footer-cards {
+
+    ul li{
+      display: inline-block;
+      padding: 0 12px;
+    }
+  }
+}
+
+.footer-text-field.v-text-field.v-text-field--enclosed:not(.v-text-field--rounded) > .v-input__control > .v-input__slot,
+ .v-text-field.v-text-field--enclosed .v-text-field__details {
+   border-radius: 0;
+ }
+
+ .footer-copyright {
+	 justify-content: center;
+ }
+
+@media screen and (max-width: 600px) {
+  .footer-text-field .v-btn:not(.v-btn--disabled) {
+    width: 115px;
+  }
+
+  .footer-component {
+
+    .footer-cards {
+      text-align: center;
+    }
+
+    .footer-btn-hold {
+      flex-direction: column;
+    }
+
+    .footer-box {
+      text-align: center;
+    }
+  }
+
+  .footer-btn.v-btn:not(.v-btn--round).v-size--default {
+    width: 200px;
+    margin: auto;
+  }
+  
+}

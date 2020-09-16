@@ -56,17 +56,11 @@ export default {
   },
 	methods: {
 		login() {
-			// var data = {
-			// 	email: this.user.email,
-			// 	password: this.user.password
-			// };
-
 			AuthDataService.login(this.user)
 			.then(response => {
 				console.log(response.data);
 				if(response.data) {
-					localStorage.setItem('user', response.data[0].id);
-					this.$store.dispatch('login');
+					this.$store.dispatch('login', response.data[0].id);
 					this.$router.push(`/profile/${response.data[0].id}`)
 				} else {
 					alert('Invalid username or password!')
