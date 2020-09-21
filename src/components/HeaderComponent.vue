@@ -9,9 +9,6 @@
 			<v-col lg="8" md="8" sm="8" cols="8">
 				<ul class="header-container__menu pl-0 pt-4 justify-right pr-5" v-if="!this.$store.state.loggedIn">
 					<li class="header-container__item">
-						<router-link to="/about">About us</router-link>
-					</li>
-					<li class="header-container__item">
 							<router-link to="/contact">Contact us</router-link>
 					</li>
 					<li class="header-container__item">

@@ -78,8 +78,8 @@ export default {
 		saveProfilePhoto() {
 			let formData = new FormData();
 			formData.append('file', this.profileImage);
-
-			AuthDataService.updateRestaurantPhoto(formData, this.restaurant.id)
+			formData.append('restaurantId', this.restaurant.id)
+			AuthDataService.updateRestaurantPhoto(formData)
 			.then(response => {
 				this.src = response.data;
 

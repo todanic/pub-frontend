@@ -29,9 +29,9 @@ class AuthDataService {
     return http.put("/update-restaurant/", data);
   }
 
-  updateRestaurantPhoto(formData, restaurantId) {
+  updateRestaurantPhoto(formData) {
     console.log(formData)
-    return http.post(`/update-restaurant-photo/${id}`, formData, {
+    return http.post(`/update-restaurant-photo/`, formData, {
       headers: {
         "Content-Type": "multipart/form-data"
       }
