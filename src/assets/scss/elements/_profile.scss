@@ -1,0 +1,16 @@
+.profile-container {
+
+	&__btn.v-btn {
+		height: 44px !important;
+
+		&.v-btn:not(.v-btn--round).v-size--default:hover {
+			box-shadow: 0 6px 22px -8px $primary-site-color;
+		}
+
+		.v-btn__content {
+			font-size: 1.4rem;
+			font-family: 'Dosis' sans-serif;
+			font-weight: 550;
+		}
+	}
+}

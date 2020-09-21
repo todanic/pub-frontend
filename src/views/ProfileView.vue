@@ -1,7 +1,7 @@
 <template>
 	<v-container class="profile-container">
 		<v-col cols="12" class="profile-container__user-col">
-			<h1>User info</h1>
+			<h1 class="text-center">User info</h1>
 			<v-text-field
 			type="text" 
 			class="profile-container__input"
@@ -21,12 +21,15 @@
 			placeholder="Password">
 		</v-text-field>
 		</v-col>
-		<v-btn min-width="150px" type="submit" @click="save">
+		<v-col lg="12" class="text-center">
+			<v-btn class="profile-container__btn mr-5" min-width="200px" type="submit" dark color="#ee2c30"@click="save">
 			Save
-		</v-btn>
-		<v-btn min-width="150px" type="submit" @click="deleteUser">
-			Delete
-		</v-btn>
+			</v-btn>
+			<v-btn class="profile-container__btn"  min-width="200px" type="submit" dark color="#ee2c30" @click="deleteUser">
+				Delete
+			</v-btn>
+		</v-col>
+	
 	</v-container>
 </template>
 <script>
@@ -73,7 +76,12 @@ export default {
     }
 	},
 	mounted() {
-		this.getUser();
+		if(this.$store.state.loggedIn) {
+			this.getUser();
+		} else {
+			this.$router.push('/')
+		}
+		
   }
 }
 </script>

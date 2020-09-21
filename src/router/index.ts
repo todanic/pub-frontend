@@ -46,14 +46,19 @@ const routes: RouteConfig[] = [
     component: () => import('../views/RestaurantView.vue'),
   },
   {
+    path: '/restaurant-profile/:id',
+    name: 'restaurant-profile-view',
+    component: () => import('../views/RestaurantProfileView.vue'),
+  },
+  {
     path: '/footer',
     name: 'footer-component',
     component: () => import('../components/FooterComponent.vue'),
   },
   {
     path: '/contact',
-    name: 'contact-us-component',
-    component: () => import('../components/ContactUsComponent.vue'),
+    name: 'contact-us-view',
+    component: () => import('../views/ContactUsView.vue'),
   },
 ];
 

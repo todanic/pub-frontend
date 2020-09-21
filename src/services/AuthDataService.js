@@ -17,12 +17,25 @@ class AuthDataService {
     return http.get(`/profile-restaurant/${userId}`);
   }
 
+  getRestaurantById(id) {
+    return http.get(`/restaurant-profile/${id}`);
+  }
+
   update(id, userData) {
     return http.put(`/update/${id}`, userData);
   }
 
   updateRestaurant(data) {
     return http.put("/update-restaurant/", data);
+  }
+
+  updateRestaurantPhoto(formData, restaurantId) {
+    console.log(formData)
+    return http.post(`/update-restaurant-photo/${id}`, formData, {
+      headers: {
+        "Content-Type": "multipart/form-data"
+      }
+    });
   }
 
   delete(id) {

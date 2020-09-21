@@ -1,66 +1,66 @@
 <template>
 	<v-container fluid class="register-container">
-		<v-row class="justify-center">
+		<v-row class="justify-center register-container__row">
 			<v-col lg="12">
 				<h1 class="text-center">Register</h1>
 			</v-col>
-			<v-col lg="4">
+			<v-col lg="4" class="text-center">
 				<v-text-field
 					type="text" 
 					class="register-container__input"
 					v-model="user.email"
 					placeholder="Email">
 				</v-text-field>
-				<div
+				<!-- <div
 					v-if="submitted && errors.has('email')"
 					class="alert-danger">
 					{{errors.first('email')}}
-				</div>
+				</div> -->
 				<v-text-field
 					type="password" 
 					class="register-container__input"
 					v-model="user.password"
 					placeholder="Password">
 				</v-text-field>
-				 <div
+				 <!-- <div
             v-if="submitted && errors.has('password')"
             class="alert-danger">
 						{{errors.first('password')}}
-					</div>
+					</div> -->
 					<v-text-field
 						type="text" 
 						class="register-container__input"
 						v-model="user.name"
 						placeholder="Name">
 					</v-text-field>
-				 <div
+				 <!-- <div
             v-if="submitted && errors.has('name')"
             class="alert-danger">
 						{{errors.first('name')}}
-					</div>
+					</div> -->
 						<v-text-field
 					type="text" 
 					class="register-container__input"
 					v-model="user.restaurantName"
 					placeholder="Restaurant name">
 				</v-text-field>
-				 <div
+				 <!-- <div
             v-if="submitted && errors.has('restaurantName')"
             class="alert-danger">
 						{{errors.first('restaurantName')}}
-					</div>
-				<v-btn min-width="150px" type="submit" @click="register">
+					</div> -->
+				<v-btn class="register-container__btn mt-5" min-width="200px" type="submit" dark color="#ee2c30" @click="register">
 					Register
 				</v-btn>
 			</v-col>
-			<v-col>
+			<!-- <v-col>
 				<div
 					v-if="message"
 					class="alert"
 					:class="successful ? 'alert-success' : 'alert-danger'">
 					{{message}}
 				</div>
-			</v-col>
+			</v-col> -->
 		</v-row>
 	</v-container>
 </template>
@@ -107,13 +107,27 @@ export default {
 			AuthDataService.registerRestaurant(data)
 				.then(response => {
 					console.log(response.data);
-					localStorage.setItem('user', this.user.id);
-					this.$store.dispatch('login');
-					this.$router.push(`/profile/${this.user.id}`)
+					this.login();
         })
         .catch(e => {
           console.log(e);
         });
+		},
+			login() {
+			AuthDataService.login(this.user)
+			.then(response => {
+				console.log(response.data);
+				if(response.data) {
+					this.$store.dispatch('login', response.data[0].id);
+					this.$router.push(`/profile/${response.data[0].id}`)
+				} else {
+					alert('Invalid username or password!')
+				}
+					
+			})
+			.catch(e => {
+				console.log(e);
+			});
 		}
 	}
 }

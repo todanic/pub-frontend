@@ -1,10 +1,10 @@
 <template>
 		<v-container fluid class="register-container">
-		<v-row class="justify-center">
+		<v-row class="justify-center register-container__row">
 			<v-col lg="12">
 				<h1 class="text-center">Login</h1>
 			</v-col>
-			<v-col lg="4">
+			<v-col lg="4" class="text-center">
 				<v-text-field
 					type="text" 
 					class="register-container__input"
@@ -30,7 +30,7 @@
 					Password is required!
 				</div> -->
 				<span v-show="loading" class="spinner-border spinner-border-sm"></span>
-				<v-btn min-width="150px" type="submit" @click="login">
+				<v-btn class="register-container__btn mt-5" min-width="200px" type="submit" dark color="#ee2c30" @click="login">
 					Login
 				</v-btn>
 			</v-col>

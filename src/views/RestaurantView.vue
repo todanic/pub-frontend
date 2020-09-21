@@ -26,10 +26,14 @@
 			v-model="restaurant.description"
 			placeholder="Restaurant description">
 		</v-textarea>
+		 <!-- <input type="file" ref="fileUpload" @change="encodeImageFileAsURL" /> -->
+			<v-file-input ref="fileUpload" @change="encodeImageFileAsURL" color="#000080" prepend-icon="" height="50px" accept="image/*" outlined label="Upload profile image">
+			</v-file-input> 
 		</v-col>
 		<v-btn min-width="150px" type="submit" @click="save">
 			Save
 		</v-btn>
+		<v-img :src="'data:image/jpeg;base64,'+ src" alt="" max-height="300px" max-width="300px"></v-img>
 	</v-container>
 </template>
 <script>
@@ -41,6 +45,8 @@ export default {
 	data() {
 		return {
 			restaurant: new Restaurant('', '', '', '', '', ''),
+			profileImage: '',
+			src: ''
 		}
 	},
 	methods: {
@@ -55,18 +61,43 @@ export default {
 			});
 		},
 		save() {
-				AuthDataService.updateRestaurant(this.restaurant)
-        .then(response => {
-					console.log(response.data);
-          this.message = 'Your restaurant info was updated successfully!';
-        })
-        .catch(e => {
-          console.log(e);
-        });
+			AuthDataService.updateRestaurant(this.restaurant)
+			.then(response => {
+				console.log(response.data);
+				this.saveProfilePhoto();
+				this.message = 'Your restaurant info was updated successfully!';
+			})
+			.catch(e => {
+				console.log(e);
+			});
 		},
+		encodeImageFileAsURL(e) {
+			console.log(e)
+			this.profileImage = e;
+		},
+		saveProfilePhoto() {
+			let formData = new FormData();
+			formData.append('file', this.profileImage);
+
+			AuthDataService.updateRestaurantPhoto(formData, this.restaurant.id)
+			.then(response => {
+				this.src = response.data;
+
+				
+			})
+			.catch(e => {
+				console.log(this.profileImage)
+				console.log(e)
+			})
+		}
 	},
 	mounted() {
-		this.getRestaurant(this.$route.params.id);
-	}
+		if(this.$store.state.loggedIn){
+			this.getRestaurant(this.$route.params.id);
+		} else {
+			this.$router.push('/')
+		}
+	},
+	
 }
 </script>
