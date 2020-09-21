@@ -63,8 +63,10 @@ export default {
 		save() {
 			AuthDataService.updateRestaurant(this.restaurant)
 			.then(response => {
-				console.log(response.data);
-				this.saveProfilePhoto();
+				console.log(this.profileImage);
+				if(this.profileImage){
+					this.saveProfilePhoto();
+				}
 				this.message = 'Your restaurant info was updated successfully!';
 			})
 			.catch(e => {
@@ -82,8 +84,6 @@ export default {
 			AuthDataService.updateRestaurantPhoto(formData)
 			.then(response => {
 				this.src = response.data;
-
-				
 			})
 			.catch(e => {
 				console.log(this.profileImage)

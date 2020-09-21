@@ -5,7 +5,7 @@
 				<h1 class="mb-5">{{ restaurant.restaurantName }}</h1>
 			</v-col>
 			<v-col lg="6">
-				<v-img max-width="500px" src="../assets/images/noimage.png" class="ml-auto"></v-img>
+				<v-img max-width="500px" :src="'data:image/jpeg;base64,'+ src" class="ml-auto"></v-img>
 			</v-col>
 			<v-col lg="6">
 				<div class="restaurant-profile-view__div">
@@ -45,6 +45,7 @@ export default {
 	data() {
 		return {
 			restaurant: new Restaurant('', '', '', '', '', ''),
+			src: ''
 		}
 	},
 	methods: {
@@ -53,11 +54,22 @@ export default {
 			AuthDataService.getRestaurantById(id)
 			.then(response => {
 				this.restaurant = response.data;
+				this.getRestaurantImage(this.restaurant.id)
 			})
 			.catch(e => {
 				console.log(e);
 			});
 		},
+		getRestaurantImage(id) {
+			AuthDataService.getRestaurantImage(id)
+			.then(response => {
+				console.log(response.data)
+				this.src = response.data;
+			})
+			.catch(e => {
+				console.log(e);
+			});
+		}
 	},
 	mounted() {
 		this.getRestaurantById(this.$route.params.id);

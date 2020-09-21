@@ -5,6 +5,12 @@
 				<h1 class="text-center">Register</h1>
 			</v-col>
 			<v-col lg="4" class="text-center">
+				<p v-if="errors.length">
+					<b>Please correct the following error(s):</b>
+					<ul>
+						<li v-for="error in errors" :key="error">{{ error }}</li>
+					</ul>
+				</p>
 				<v-text-field
 					type="text" 
 					class="register-container__input"
@@ -77,10 +83,32 @@ export default {
 		submitted: false,
 		successful: false,
 		message: '',
+		errors: []
 		}
 	},
 	methods: {
 		register() {
+			this.errors = [];
+
+			if (!this.user.email) {
+        this.errors.push('Email required.');
+      } else if (!this.validEmail(this.user.email)) {
+        this.errors.push('Valid email required.');
+			}
+			
+			if (!this.user.password) 
+        this.errors.push("Password required.");
+			
+			if (!this.user.name) 
+        this.errors.push("Name required.");
+
+			if (!this.user.restaurantName) 
+        this.errors.push("Restaurant name required.");
+			
+			if(this.errors.length !== 0){
+				return false;
+			}
+
 			var data = {
 				email: this.user.email,
 				name: this.user.name,
@@ -90,14 +118,22 @@ export default {
 
 			AuthDataService.register(data)
 				.then(response => {
-				this.user.id = response.data.id;
-				this.registerRestaurant()
-				console.log(response.data);
+					if(response.data.id){
+						this.user.id = response.data.id;
+						this.registerRestaurant()
+						console.log(response.data);
+					} else {
+						this.errors.push("Email already exists.")
+					}
         })
         .catch(e => {
           console.log(e);
 			  });
 		},
+		 validEmail: function (email) {
+      var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      return re.test(email);
+    },
 		registerRestaurant() {
 			var data = {
 				restaurantName: this.user.restaurantName,
@@ -113,7 +149,7 @@ export default {
           console.log(e);
         });
 		},
-			login() {
+		login() {
 			AuthDataService.login(this.user)
 			.then(response => {
 				console.log(response.data);

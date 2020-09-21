@@ -21,6 +21,10 @@ class AuthDataService {
     return http.get(`/restaurant-profile/${id}`);
   }
 
+  getRestaurantImage(id) {
+    return http.post(`/image/`, id);
+  }
+
   update(id, userData) {
     return http.put(`/update/${id}`, userData);
   }
@@ -30,7 +34,6 @@ class AuthDataService {
   }
 
   updateRestaurantPhoto(formData) {
-    console.log(formData)
     return http.post(`/update-restaurant-photo/`, formData, {
       headers: {
         "Content-Type": "multipart/form-data"

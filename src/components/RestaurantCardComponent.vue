@@ -10,7 +10,7 @@
 		:ripple="false"> 
 		<!-- restaurant name and image -->
 		<v-row class="pa-3 pb-0 pt-0 restaurant-card__row"> 
-			<v-img class="restaurant-card__row-image" height="180px" width="80px" src="../assets/images/noimage.png"></v-img>
+			<v-img class="restaurant-card__row-image" height="180px" width="80px" :src="src"></v-img>
 			<v-col lg="12" md="12" sm="12" cols="12" class="pt-2 pb-2 text-center restaurant-card-row__title">
 				<p>
 					{{ restaurant.restaurantName }}
@@ -32,11 +32,14 @@
 	</v-card>
 </template>
 <script>
+import AuthDataService from "../services/AuthDataService";
+
 export default {
 	name: 'RestaurantCardComponent',
 	data() {
 		return {
-			restaurantLink: ''
+			restaurantLink: '',
+			src: require('../assets/images/noimage.png')
 		}
 	},
 	props: {
@@ -52,10 +55,18 @@ export default {
 	},
 	mounted() {
 		this.restaurantLink = '/restaurant-profile/' + this.restaurant.id;
-
-		if(!this.restaurant.image) {
-			this.restaurant.image = "../assets/images/noimage.png";
-		}
+		
+		AuthDataService.getRestaurantImage(this.restaurant.id)
+		.then(response => {
+			console.log(response.data)
+			if(response.data) 
+				this.src = "data:image/jpeg;base64,"+ response.data;
+			else
+				this.src =  require('../assets/images/noimage.png');
+		})
+		.catch(e => {
+			console.log(e);
+		});
 	}
 }
 </script>
